@@ -80,11 +80,11 @@ app.get('/artist', (req, res) => {
 });
 
 app.post('/artist', (req, res) => {
-    let queryText = `INSERT INTO "songs" ("name", "brithdate")
+    let queryText = `INSERT INTO "artists" ("name", "birthdate")
     VALUES ($1, $2);`
 
     let values = [req.body.name, req.body.birthdate];
-    
+
     pool.query(queryText, values)
     .then( (result) => {
         //only guarentee that the query is done
@@ -111,10 +111,10 @@ app.get('/song', (req, res) => {
 });
 
 app.post('/song', (req, res) => {
-    let queryText = `INSERT INTO "songs" ("rank", "track", "artist", "published")
-    VALUES ($1, $2, $3, $4);`
+    let queryText = `INSERT INTO "songs" ("title", "length", "released")
+    VALUES ($1, $2, $3);`
 
-    let values = [req.body.rank, req.body.track, req.body.artist, req.body.published]
+    let values = [req.body.title, req.body.length, req.body.released]
 
     pool.query(queryText, values)
     .then( (result) => {
